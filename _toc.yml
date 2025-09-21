@@ -6,4 +6,7 @@ root: intro
 chapters:
 - file: tugas1
 - file: tugas2
-- file: tugas3
+  sections:
+  - file: tugas3
+  - file: tugas4
+- file: tugas5

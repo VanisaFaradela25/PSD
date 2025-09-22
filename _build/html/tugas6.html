@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tugas6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="DATA PREPROCESSING" href="tugas5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +122,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -408,8 +407,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ucimlrepo
-  Downloading ucimlrepo-0.0.7-py3-none-any.whl.metadata (5.5 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ucimlrepo in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (0.0.7)
 Requirement already satisfied: pandas&gt;=1.0.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from ucimlrepo) (2.1.4)
 Requirement already satisfied: certifi&gt;=2020.12.5 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from ucimlrepo) (2025.1.31)
 Requirement already satisfied: numpy&lt;2,&gt;=1.23.2 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (1.26.4)
@@ -417,9 +415,6 @@ Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\dell\appdat
 Requirement already satisfied: pytz&gt;=2020.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2025.1)
 Requirement already satisfied: tzdata&gt;=2022.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2025.1)
 Requirement already satisfied: six&gt;=1.5 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.0.0-&gt;ucimlrepo) (1.17.0)
-Downloading ucimlrepo-0.0.7-py3-none-any.whl (8.0 kB)
-Installing collected packages: ucimlrepo
-Successfully installed ucimlrepo-0.0.7
 Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
@@ -445,6 +440,32 @@ Note: you may need to restart the kernel to use updated packages.
   
 <span class="c1"># variable information </span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ecoli</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;uci_id&#39;: 39, &#39;name&#39;: &#39;Ecoli&#39;, &#39;repository_url&#39;: &#39;https://archive.ics.uci.edu/dataset/39/ecoli&#39;, &#39;data_url&#39;: &#39;https://archive.ics.uci.edu/static/public/39/data.csv&#39;, &#39;abstract&#39;: &#39;This data contains protein localization sites&#39;, &#39;area&#39;: &#39;Biology&#39;, &#39;tasks&#39;: [&#39;Classification&#39;], &#39;characteristics&#39;: [&#39;Multivariate&#39;], &#39;num_instances&#39;: 336, &#39;num_features&#39;: 7, &#39;feature_types&#39;: [&#39;Real&#39;], &#39;demographics&#39;: [], &#39;target_col&#39;: [&#39;class&#39;], &#39;index_col&#39;: [&#39;Sequence&#39;], &#39;has_missing_values&#39;: &#39;no&#39;, &#39;missing_values_symbol&#39;: None, &#39;year_of_dataset_creation&#39;: 1996, &#39;last_updated&#39;: &#39;Thu Feb 15 2024&#39;, &#39;dataset_doi&#39;: &#39;10.24432/C5388M&#39;, &#39;creators&#39;: [&#39;Kenta Nakai&#39;], &#39;intro_paper&#39;: {&#39;ID&#39;: 391, &#39;type&#39;: &#39;NATIVE&#39;, &#39;title&#39;: &#39;A Probabilistic Classification System for Predicting the Cellular Localization Sites of Proteins&#39;, &#39;authors&#39;: &#39;P. Horton, K. Nakai&#39;, &#39;venue&#39;: &#39;Intelligent Systems in Molecular Biology&#39;, &#39;year&#39;: 1996, &#39;journal&#39;: None, &#39;DOI&#39;: None, &#39;URL&#39;: &#39;https://www.semanticscholar.org/paper/A-Probabilistic-Classification-System-for-the-Sites-Horton-Nakai/623c5e3441a1e08e3da2c68924c85e4b95274652&#39;, &#39;sha&#39;: None, &#39;corpus&#39;: None, &#39;arxiv&#39;: None, &#39;mag&#39;: None, &#39;acl&#39;: None, &#39;pmid&#39;: None, &#39;pmcid&#39;: None}, &#39;additional_info&#39;: {&#39;summary&#39;: &#39;The references below describe a predecessor to this dataset and its development. They also give results (not cross-validated) for classification by a rule-based expert system with that version of the dataset.\r\n\r\nReference: &quot;Expert Sytem for Predicting Protein Localization Sites in Gram-Negative Bacteria&quot;, Kenta Nakai &amp; Minoru Kanehisa,  PROTEINS: Structure, Function, and Genetics 11:95-110, 1991.\r\n\r\nReference: &quot;A Knowledge Base for Predicting Protein Localization Sites in Eukaryotic Cells&quot;, Kenta Nakai &amp; Minoru Kanehisa, Genomics 14:897-911, 1992.&#39;, &#39;purpose&#39;: None, &#39;funded_by&#39;: None, &#39;instances_represent&#39;: None, &#39;recommended_data_splits&#39;: None, &#39;sensitive_data&#39;: None, &#39;preprocessing_description&#39;: None, &#39;variable_info&#39;: &quot;  1.  Sequence Name: Accession number for the SWISS-PROT database\r\n  2.  mcg: McGeoch&#39;s method for signal sequence recognition.\r\n  3.  gvh: von Heijne&#39;s method for signal sequence recognition.\r\n  4.  lip: von Heijne&#39;s Signal Peptidase II consensus sequence score. Binary attribute.\r\n  5.  chg: Presence of charge on N-terminus of predicted lipoproteins. Binary attribute.\r\n  6.  aac: score of discriminant analysis of the amino acid content of outer membrane and periplasmic proteins.\r\n  7. alm1: score of the ALOM membrane spanning region prediction program.\r\n  8. alm2: score of ALOM program after excluding putative cleavable signal regions from the sequence.&quot;, &#39;citation&#39;: None}}
+       name     role         type demographic  \
+0  Sequence       ID  Categorical        None   
+1       mcg  Feature   Continuous        None   
+2       gvh  Feature   Continuous        None   
+3       lip  Feature       Binary        None   
+4       chg  Feature       Binary        None   
+5       aac  Feature   Continuous        None   
+6      alm1  Feature   Continuous        None   
+7      alm2  Feature   Continuous        None   
+8     class   Target  Categorical        None   
+
+                                         description units missing_values  
+0       Accession number for the SWISS-PROT database  None             no  
+1   McGeoch&#39;s method for signal sequence recognition  None             no  
+2  von Heijne&#39;s method for signal sequence recogn...  None             no  
+3  von Heijne&#39;s Signal Peptidase II consensus seq...  None             no  
+4  Presence of charge on N-terminus of predicted ...  None             no  
+5  score of discriminant analysis of the amino ac...  None             no  
+6  score of the ALOM membrane spanning region pre...  None             no  
+7  score of ALOM program after excluding putative...  None             no  
+8                                               None  None             no  
 </pre></div>
 </div>
 </div>
@@ -480,6 +501,15 @@ Note: you may need to restart the kernel to use updated packages.
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="tugas5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DATA PREPROCESSING</p>
+      </div>
+    </a>
 </div>
                 </footer>
               

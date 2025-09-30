@@ -397,6 +397,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smote">SMOTE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-perbandingan-sebelum-data-sesudah-penyeimbangan-data-dengan-smote">Tampilan Perbandingan Sebelum data Sesudah Penyeimbangan Data dengan Smote</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adasyn">ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeimbangan-data-menggunakan-adasyn-dengan-iterasi">Penyeimbangan Data Menggunakan ADASYN dengan Iterasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-perbandingan-sebelum-dan-sesudah-penyeimbangan-dengan-datasyn">Tampilan Perbandingan Sebelum dan Sesudah Penyeimbangan dengan DATASYN</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-naive-bayes">Klasifikasi dengan Naive Bayes</a><ul class="nav section-nav flex-column">
@@ -410,8 +412,19 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-random-forest">Klasifikasi dengan Random Forest</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-random-forest-dengan-confusion-matrix">Implementasi Random Forest dengan Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-data-asli">Akurasi Data Asli</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-data-dengan-smote">Akurasi Data dengan SMOTE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafik-perbandingan-akurasi-ketiganya">Grafik Perbandingan Akurasi Ketiganya</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier">Bagging Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Import LIbrary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifier">Classifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier-smote">Bagging Classifier SMOTE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier-adasyn">Bagging Classifier ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-bagging-classifier-dari-data-asli-smote-dan-adasyn">Perbandingan Bagging Classifier dari Data Asli, SMOTE, dan ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-bagging-classifier">Kesimpulan Hasil Bagging Classifier</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">Referensi</a></li>
@@ -479,11 +492,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: imbalanced-learn in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (0.12.4)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (3.6.0)
-Requirement already satisfied: scipy&gt;=1.5.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (1.13.1)
 Requirement already satisfied: scikit-learn&gt;=1.0.2 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (1.6.1)
-Requirement already satisfied: joblib&gt;=1.1.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (1.5.2)
 Requirement already satisfied: numpy&gt;=1.17.3 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (2.0.2)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (3.6.0)
+Requirement already satisfied: joblib&gt;=1.1.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (1.5.2)
+Requirement already satisfied: scipy&gt;=1.5.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from imbalanced-learn) (1.13.1)
 Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
@@ -504,21 +517,21 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 Requirement already satisfied: scikit-learn in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (1.6.1)
 Requirement already satisfied: imbalanced-learn in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (0.12.4)
 Requirement already satisfied: matplotlib in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (3.9.4)
-Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2025.2)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2.9.0.post0)
-Requirement already satisfied: numpy&gt;=1.22.4 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2.0.2)
 Requirement already satisfied: pytz&gt;=2020.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2025.2)
+Requirement already satisfied: numpy&gt;=1.22.4 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2.0.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2025.2)
 Requirement already satisfied: scipy&gt;=1.6.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from scikit-learn) (1.13.1)
-Requirement already satisfied: threadpoolctl&gt;=3.1.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from scikit-learn) (3.6.0)
 Requirement already satisfied: joblib&gt;=1.2.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from scikit-learn) (1.5.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from scikit-learn) (3.6.0)
 Requirement already satisfied: pillow&gt;=8 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (11.3.0)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (1.4.7)
+Requirement already satisfied: packaging&gt;=20.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (25.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (1.3.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (3.2.5)
 Requirement already satisfied: importlib-resources&gt;=3.2.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (6.5.2)
 Requirement already satisfied: cycler&gt;=0.10 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (0.12.1)
 Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (4.60.0)
-Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (1.3.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (3.2.5)
-Requirement already satisfied: packaging&gt;=20.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (25.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (1.4.7)
 Requirement already satisfied: zipp&gt;=3.1.0 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib) (3.23.0)
 Requirement already satisfied: six&gt;=1.5 in c:\users\triad\appdata\local\programs\python\python39\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
 Note: you may need to restart the kernel to use updated packages.
@@ -1184,7 +1197,7 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Temp\ipykernel_16668\1445468488.py:3: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Temp\ipykernel_15368\1445468488.py:3: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
   colors = plt.cm.get_cmap(&quot;tab10&quot;, len(classes))
 </pre></div>
 </div>
@@ -1231,6 +1244,22 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 <p>Kode ini digunakan untuk menampilkan bagaimana data terlihat setelah dilakukan penyeimbangan menggunakan SMOTE. SMOTE menambahkan sampel baru untuk kelas-kelas yang jumlahnya sedikit sehingga dataset menjadi lebih seimbang. Setelah itu, data direduksi dimensinya menjadi dua komponen utama menggunakan PCA agar bisa divisualisasikan. Pada plot, titik bulat mewakili data asli, sedangkan tanda silang mewakili data sintetis yang dihasilkan SMOTE. Visualisasi ini membantu melihat distribusi data asli dan data tambahan dari SMOTE, memastikan bahwa pola data tetap mirip namun jumlah sampel di setiap kelas lebih merata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">k_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_smote</span><span class="p">,</span> <span class="n">y_smote</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_smote</span><span class="p">)</span>
 
@@ -1255,17 +1284,11 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_smote</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
-
-<span class="ne">NameError</span>: name &#39;X_smote&#39; is not defined
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Temp\ipykernel_15368\2947857954.py:5: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+  colors = plt.cm.get_cmap(&quot;tab10&quot;, len(le.classes_))
 </pre></div>
 </div>
+<img alt="_images/fc9561ea89674b27878ea1aa00855884fe7bdbc5fe6044521f3f9be302330497.png" src="_images/fc9561ea89674b27878ea1aa00855884fe7bdbc5fe6044521f3f9be302330497.png" />
 </div>
 </div>
 <p>Heatmap dibawah ini menunjukkan korelasi antar fitur setelah dataset diseimbangkan menggunakan SMOTE. Dengan menambahkan sampel sintetis pada kelas yang lebih sedikit, hubungan antar fitur secara umum tetap terlihat konsisten, namun beberapa korelasi bisa sedikit berubah karena adanya variasi dari data baru yang dihasilkan. Jika dibandingkan dengan heatmap sebelum SMOTE, pola korelasi utama antar fitur tetap sama, menandakan bahwa penyeimbangan tidak mengubah hubungan dasar antar fitur, tetapi membantu dataset menjadi lebih seimbang sehingga model nantinya bisa belajar lebih adil dari semua kelas.</p>
@@ -1290,7 +1313,7 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/78bd9f3a2d642f533daa0574774d0476c1b2aed9099e8d401e3f2c829f7852ce.png" src="_images/78bd9f3a2d642f533daa0574774d0476c1b2aed9099e8d401e3f2c829f7852ce.png" />
+<img alt="_images/f8d5fba1bcc4c694c9c3bd8eec5629f704ac505c39b9ea05751e699e813fe28f.png" src="_images/f8d5fba1bcc4c694c9c3bd8eec5629f704ac505c39b9ea05751e699e813fe28f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1308,7 +1331,7 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b834bec9651216ef593a434be76eef244ceb3930ededfdec157f535740a826cb.png" src="_images/b834bec9651216ef593a434be76eef244ceb3930ededfdec157f535740a826cb.png" />
+<img alt="_images/cc76308f8e8e712c7e181ed7fbdf1efd3ed64f131be381d1cd9e2bd27926fe3d.png" src="_images/cc76308f8e8e712c7e181ed7fbdf1efd3ed64f131be381d1cd9e2bd27926fe3d.png" />
 </div>
 </div>
 </section>
@@ -1348,7 +1371,7 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8e8dc93e7867f53875ec4babd4ec69e3d29cd00e8faa9773718899bf4c5f0d05.png" src="_images/8e8dc93e7867f53875ec4babd4ec69e3d29cd00e8faa9773718899bf4c5f0d05.png" />
+<img alt="_images/c445e82e6a5b8c028523cdec0de040c366a687187e72aeae6de9dd679411bb8c.png" src="_images/c445e82e6a5b8c028523cdec0de040c366a687187e72aeae6de9dd679411bb8c.png" />
 </div>
 </div>
 </section>
@@ -1357,90 +1380,109 @@ You should consider upgrading via the &#39;C:\Users\triad\AppData\Local\Programs
 <p>Pada percobaan menggunakan ADASYN untuk menyeimbangkan dataset Ecoli, muncul error karena metode ini tidak menemukan tetangga dari kelas mayoritas untuk beberapa sampel minoritas. ADASYN bekerja dengan membuat sampel sintetis berdasarkan jarak ke tetangga mayoritas, sehingga jika jumlah sampel minoritas terlalu sedikit atau terlalu terisolasi, proses ini gagal. Dataset Ecoli memiliki banyak kelas minoritas dengan jumlah sampel sangat sedikit, membuat ADASYN tidak bisa menghasilkan data baru dengan benar. Sebagai solusi, metode SMOTE lebih cocok digunakan karena hanya membutuhkan tetangga dari kelas minoritas itu sendiri untuk membuat sampel sintetis, sehingga lebih stabil untuk dataset dengan distribusi kelas yang tidak seimbang dan jumlah sampel minoritas yang kecil.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADASYN</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">synthetic_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">X_res</span><span class="p">])</span>
-<span class="n">y_labels</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_res</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;X_scaled&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s2">&quot;Variabel X_scaled tidak ditemukan. Jalankan preprocessing (scaling) dulu.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;y_enc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s2">&quot;Variabel y_enc tidak ditemukan. Jalankan encoding label dulu.&quot;</span><span class="p">)</span>
 
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_res</span><span class="p">)</span>
+    <span class="n">X_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+    <span class="n">y_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_enc</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+    <span class="k">if</span> <span class="s1">&#39;le&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+        <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+        <span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_proc</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">):</span>
-    <span class="n">idx_orig</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_labels</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">synthetic_mask</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">idx_orig</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">idx_orig</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2"> (original)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_proc</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi sebelum resampling:&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
 
-    <span class="n">idx_syn</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_labels</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">synthetic_mask</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">idx_syn</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">idx_syn</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2"> (synthetic)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+    <span class="n">min_count</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">min_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">rare_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab</span> <span class="k">for</span> <span class="n">lab</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ada kelas dengan 1 sampel:&quot;</span><span class="p">,</span> <span class="n">rare_labels</span><span class="p">,</span> <span class="s2">&quot;- digandakan agar ADASYN bisa jalan.&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">rare_labels</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_proc</span> <span class="o">==</span> <span class="n">lab</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">X_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X_proc</span><span class="p">,</span> <span class="n">X_proc</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="n">y_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_proc</span><span class="p">,</span> <span class="p">[</span><span class="n">y_proc</span><span class="p">[</span><span class="n">idx</span><span class="p">]]])</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_proc</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi setelah duplikasi:&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;PCA 2D After ADASYN - Ecoli Dataset&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PC1&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PC2&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">min_count_after</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">n_neighbors</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count_after</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Menggunakan n_neighbors =&quot;</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">)</span>
+
+    <span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">)</span>
+    <span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_proc</span><span class="p">,</span> <span class="n">y_proc</span><span class="p">)</span>
+
+    <span class="n">synthetic_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_res</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">synthetic_mask</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">X_proc</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">y_labels</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_res</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">y_labels</span> <span class="o">=</span> <span class="n">y_res</span>
+
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_res</span><span class="p">)</span>
+
+    <span class="n">num_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)</span>
+    <span class="n">colors_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_classes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">):</span>
+        <span class="n">idx_orig</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_labels</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">synthetic_mask</span><span class="p">)</span>
+        <span class="n">idx_syn</span>  <span class="o">=</span> <span class="p">(</span><span class="n">y_labels</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">synthetic_mask</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">idx_orig</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">idx_orig</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">idx_orig</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2"> (original)&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="n">colors_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">idx_syn</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">idx_syn</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">idx_syn</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2"> (synthetic)&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span>
+                        <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;PCA 2D After ADASYN&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PC1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PC2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADASYN gagal: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;ADASYN Gagal&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">46</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">synthetic_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">X_res</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">y_labels</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_res</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\triad\AppData\Local\Programs\Python\Python313\Lib\site-packages\imblearn\base.py:202,</span> in <span class="ni">BaseSampler.fit_resample</span><span class="nt">(self, X, y, **params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_resample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Resample the dataset.</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="sd">     Parameters</span>
-<span class="sd">   (...)    200         The corresponding label of `X_resampled`.</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\triad\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\base.py:1389,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1382</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1384</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1385</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1386</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1387</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1388</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1389</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\triad\AppData\Local\Programs\Python\Python313\Lib\site-packages\imblearn\base.py:105,</span> in <span class="ni">SamplerMixin.fit_resample</span><span class="nt">(self, X, y, **params)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">binarize_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampling_strategy_</span> <span class="o">=</span> <span class="n">check_sampling_strategy</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="bp">self</span><span class="o">.</span><span class="n">sampling_strategy</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampling_type</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">105</span> <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="n">y_</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="n">label_binarize</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="k">if</span> <span class="n">binarize_y</span> <span class="k">else</span> <span class="n">output</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="n">arrays_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\triad\AppData\Local\Programs\Python\Python313\Lib\site-packages\imblearn\over_sampling\_adasyn.py:161,</span> in <span class="ni">ADASYN._fit_resample</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="n">ratio_nn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">nns</span><span class="p">]</span> <span class="o">!=</span> <span class="n">class_sample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_neighbors</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ratio_nn</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">161</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>         <span class="s2">&quot;Not any neigbours belong to the majority&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span>         <span class="s2">&quot; class. This case will induce a NaN case&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>         <span class="s2">&quot; with a division by zero. ADASYN is not&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>         <span class="s2">&quot; suited for this specific dataset.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>         <span class="s2">&quot; Use SMOTE instead.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">ratio_nn</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ratio_nn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span> <span class="n">n_samples_generate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">ratio_nn</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-
-<span class="ne">RuntimeError</span>: Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi sebelum resampling: Counter({np.int64(0): 143, np.int64(1): 77, np.int64(7): 52, np.int64(4): 35, np.int64(5): 20, np.int64(6): 5, np.int64(3): 2, np.int64(2): 2})
+Menggunakan n_neighbors = 1
+ADASYN gagal: Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="_images/e8298bd8cc064682767b6766f4311cce6324256588c08023f686d560a335a8fb.png" src="_images/e8298bd8cc064682767b6766f4311cce6324256588c08023f686d560a335a8fb.png" />
 </div>
 </div>
+</section>
+<section id="penyeimbangan-data-menggunakan-adasyn-dengan-iterasi">
+<h3>Penyeimbangan Data Menggunakan ADASYN dengan Iterasi<a class="headerlink" href="#penyeimbangan-data-menggunakan-adasyn-dengan-iterasi" title="Link to this heading">#</a></h3>
+<p>Kode ini menunjukkan proses penyeimbangan data menggunakan ADASYN dengan cara iteratif. Pada awalnya di code di atas, ADASYN sering gagal dijalankan karena jumlah sampel di kelas minoritas terlalu sedikit, sehingga nilai default k_neighbors tidak sesuai. Untuk mengatasi hal itu, dibuatlah perulangan (iterasi) yang mencoba menjalankan ADASYN dengan penyesuaian nilai k_neighbors secara bertahap. Hasilnya, pada salah satu iterasi ADASYN berhasil dijalankan dan mampu menghasilkan data sintetis pada kelas minoritas. Dengan cara ini, distribusi kelas akhirnya menjadi lebih seimbang. Jadi, dataset hasil balancing ini adalah bentuk kode yang berhasil dijalankan karena adanya pendekatan iteratif, bukan hanya sekali coba, tetapi melalui beberapa percobaan hingga menemukan parameter yang tepat.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. PENYEIMBANGAN DATA MENGGUNAKAN ADASYN&quot;</span><span class="p">)</span>
@@ -1588,12 +1630,92 @@ Distribusi setelah balancing:
   pp: 143 samples (original: 52, generated: 91)
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">balanced_dist</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightcoral&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas Setelah ADASYN&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Kelas&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Sampel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f78fbb96fd6f6b345bc88a6ecbbca9a83bd759d88c4d96e9eaaacf59e3ee185a.png" src="_images/f78fbb96fd6f6b345bc88a6ecbbca9a83bd759d88c4d96e9eaaacf59e3ee185a.png" />
+</div>
+</div>
+</section>
+<section id="tampilan-perbandingan-sebelum-dan-sesudah-penyeimbangan-dengan-datasyn">
+<h3>Tampilan Perbandingan Sebelum dan Sesudah Penyeimbangan dengan DATASYN<a class="headerlink" href="#tampilan-perbandingan-sebelum-dan-sesudah-penyeimbangan-dengan-datasyn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_counts_before</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">class_counts_after</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_balanced</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>  
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">bars_before</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">class_counts_before</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">class_counts_before</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+                          <span class="n">color</span><span class="o">=</span><span class="s2">&quot;salmon&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribusi Sampel per Kelas</span><span class="se">\n</span><span class="s2">Sebelum Penyeimbangan&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Kelas&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Sampel&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars_before</span><span class="p">:</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">)),</span> 
+                 <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">bars_after</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">class_counts_after</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">class_counts_after</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribusi Sampel per Kelas</span><span class="se">\n</span><span class="s2">Setelah ADASYN&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Kelas&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Sampel&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars_after</span><span class="p">:</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">)),</span> 
+                 <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4b8d09fa2f8617303082336039a46a9444ce06a4997f29763c670e0f6143cc94.png" src="_images/4b8d09fa2f8617303082336039a46a9444ce06a4997f29763c670e0f6143cc94.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="klasifikasi-dengan-naive-bayes">
 <h2>Klasifikasi dengan Naive Bayes<a class="headerlink" href="#klasifikasi-dengan-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Klasifikasi Naïve Bayes adalah algoritma pembelajaran mesin terawasi yang digunakan untuk tugas-tugas klasifikasi seperti klasifikasi teks. Algoritma ini menggunakan prinsip-prinsip probabilitas untuk melakukan tugas-tugas klasifikasi.</p>
 <section id="import-library">
 <h3>Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1670,7 +1792,7 @@ Distribusi setelah balancing:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e9de1415ef667db4fcf6a8973edc57596735311fbee336f384e35110d2e92114.png" src="_images/e9de1415ef667db4fcf6a8973edc57596735311fbee336f384e35110d2e92114.png" />
+<img alt="_images/e95a391ca837cced997c0a1f42cce77da99e989c0582a90deb44b014fd138a6b.png" src="_images/e95a391ca837cced997c0a1f42cce77da99e989c0582a90deb44b014fd138a6b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes (Data Asli): 0.7822
 </pre></div>
 </div>
@@ -1687,7 +1809,7 @@ Distribusi setelah balancing:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3fae5fdfe983170c9f9d9b68b9943bb3c7e6a1163fe824b6af07e496995b4cee.png" src="_images/3fae5fdfe983170c9f9d9b68b9943bb3c7e6a1163fe824b6af07e496995b4cee.png" />
+<img alt="_images/84b2395e4cdcbc302fc4851bf2969c023e71f613c34dedcf6de41e8b9c03b17b.png" src="_images/84b2395e4cdcbc302fc4851bf2969c023e71f613c34dedcf6de41e8b9c03b17b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes (Setelah SMOTE): 0.8227
 </pre></div>
 </div>
@@ -1698,19 +1820,49 @@ Distribusi setelah balancing:
 <h3>Akurasi Data dengan ADASYN<a class="headerlink" href="#akurasi-data-dengan-adasyn" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">)</span>
-    <span class="n">acc_adasyn</span> <span class="o">=</span> <span class="n">nb_with_cm</span><span class="p">(</span><span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="s2">&quot;Data ADASYN&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Naive Bayes (Setelah ADASYN): </span><span class="si">{</span><span class="n">acc_adasyn</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADASYN gagal: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">acc_adasyn</span> <span class="o">=</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">y_enc</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">acc_original</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADASYN</span>
+
+<span class="n">adasyn_success</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">acc_adasyn</span> <span class="o">=</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">y_enc</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">acc_original</span>  <span class="c1"># default</span>
+
+<span class="c1"># coba beberapa nilai n_neighbors biar gak langsung gagal</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>  
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">)</span>
+        <span class="n">acc_tmp</span> <span class="o">=</span> <span class="n">nb_with_cm</span><span class="p">(</span><span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Data ADASYN (n_neighbors=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ ADASYN berhasil dengan n_neighbors=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">, Akurasi: </span><span class="si">{</span><span class="n">acc_tmp</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">acc_adasyn</span> <span class="o">=</span> <span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span><span class="p">,</span> <span class="n">acc_tmp</span>
+        <span class="n">adasyn_success</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">break</span>  <span class="c1"># kalau sudah berhasil, langsung stop</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ ADASYN gagal dengan n_neighbors=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">adasyn_success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Semua percobaan ADASYN gagal, pakai data asli sebagai fallback.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADASYN gagal: Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>❌ ADASYN gagal dengan n_neighbors=1 → Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.
+❌ ADASYN gagal dengan n_neighbors=2 → Expected n_neighbors &lt;= n_samples_fit, but n_neighbors = 3, n_samples_fit = 2, n_samples = 2
+❌ ADASYN gagal dengan n_neighbors=3 → Expected n_neighbors &lt;= n_samples_fit, but n_neighbors = 4, n_samples_fit = 2, n_samples = 2
+❌ ADASYN gagal dengan n_neighbors=4 → Expected n_neighbors &lt;= n_samples_fit, but n_neighbors = 5, n_samples_fit = 2, n_samples = 2
+❌ ADASYN gagal dengan n_neighbors=5 → Expected n_neighbors &lt;= n_samples_fit, but n_neighbors = 6, n_samples_fit = 2, n_samples = 2
+⚠️ Semua percobaan ADASYN gagal, pakai data asli sebagai fallback.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -1722,7 +1874,7 @@ Distribusi setelah balancing:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ASLI&quot;</span><span class="p">,</span> <span class="s2">&quot;SMOTE&quot;</span><span class="p">,</span> <span class="s2">&quot;ADASYN&quot;</span><span class="p">]</span>
 <span class="n">accuracies</span> <span class="o">=</span> <span class="p">[</span><span class="n">acc_original</span><span class="p">,</span> <span class="n">acc_smote</span><span class="p">,</span> <span class="n">acc_adasyn</span><span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;skyblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgray&quot;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;skyblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
@@ -1730,9 +1882,11 @@ Distribusi setelah balancing:
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bar</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bars</span><span class="p">):</span>
     <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">adasyn_success</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">&quot;Gagal&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">&quot;Gagal&quot;</span><span class="p">,</span> 
+                 <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+                 <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Perbandingan Akurasi Naive Bayes&quot;</span><span class="p">)</span>
@@ -1742,13 +1896,14 @@ Distribusi setelah balancing:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c7399f009ea802904ab2b21fb2fa795e6f46b1d26ece9a9ded7d0b14e68e7c86.png" src="_images/c7399f009ea802904ab2b21fb2fa795e6f46b1d26ece9a9ded7d0b14e68e7c86.png" />
+<img alt="_images/fdc0ab8cd488e1144dea77870973109acd4aaa5b7392fdbb88d684513de17d1c.png" src="_images/fdc0ab8cd488e1144dea77870973109acd4aaa5b7392fdbb88d684513de17d1c.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="klasifikasi-dengan-random-forest">
 <h2>Klasifikasi dengan Random Forest<a class="headerlink" href="#klasifikasi-dengan-random-forest" title="Link to this heading">#</a></h2>
+<p>Dikutip dari IBM, random forest adalah algoritma yang menggabungkan hasil (output) dari beberapa decision tree untuk mencapai satu hasil yang lebih akurat. Random forest membutuhkan gabungan beberapa decision tree untuk memprediksi hasil yang akurat. Konsep sederhana dari random forest adalah beberapa decision tree yang tidak berkorelasi akan bekerja lebih baik sebagai kelompok dibandingkan individu. Kelebihan Random Forest terletak pada kemampuannya mengurangi risiko overfitting yang sering terjadi pada model decision tree tunggal. Dengan adanya banyak pohon yang dilatih dari sampel data berbeda serta subset fitur yang dipilih secara acak, model menjadi lebih stabil dan akurat.</p>
 <section id="id2">
 <h3>Import Library<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1762,6 +1917,10 @@ Distribusi setelah balancing:
 </div>
 </div>
 </div>
+</section>
+<section id="implementasi-random-forest-dengan-confusion-matrix">
+<h3>Implementasi Random Forest dengan Confusion Matrix<a class="headerlink" href="#implementasi-random-forest-dengan-confusion-matrix" title="Link to this heading">#</a></h3>
+<p>Kode rf_with_cm ini dipakai untuk membuat model klasifikasi dengan Random Forest. Pertama, data dibagi jadi data latih dan data uji. Lalu model Random Forest dilatih dengan data latih dan dipakai untuk memprediksi data uji. Setelah itu dihitung nilai akurasi dan ditampilkan confusion matrix, yaitu tabel yang menunjukkan prediksi benar dan salah untuk tiap kelas. Visualisasi matriks ini membantu melihat seberapa bagus model mengenali tiap kelas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rf_with_cm</span><span class="p">(</span><span class="n">X_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">):</span>
@@ -1799,13 +1958,10 @@ Distribusi setelah balancing:
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Akurasi Data Asli</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="akurasi-data-asli">
+<h3>Akurasi Data Asli<a class="headerlink" href="#akurasi-data-asli" title="Link to this heading">#</a></h3>
+<p>Kode ini menjalankan fungsi rf_with_cm dengan data asli yang sudah diskalakan (X_scaled) dan label yang sudah diencode (y_enc). Hasil dari fungsi berupa nilai akurasi model Random Forest disimpan pada variabel acc_original. Selanjutnya, akurasi tersebut ditampilkan dengan format 4 angka di belakang koma.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acc_original</span> <span class="o">=</span> <span class="n">rf_with_cm</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">,</span> <span class="s2">&quot;Data Asli&quot;</span><span class="p">)</span>
@@ -1814,7 +1970,7 @@ Distribusi setelah balancing:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b6b1db7f50c08cb071b74f566ec2951e95561f34935d3f9994551ac06d14be2f.png" src="_images/b6b1db7f50c08cb071b74f566ec2951e95561f34935d3f9994551ac06d14be2f.png" />
+<img alt="_images/32a3808b054aed0950f38696032b73cfcbeef77bafe362f053cb1e81b6ea0936.png" src="_images/32a3808b054aed0950f38696032b73cfcbeef77bafe362f053cb1e81b6ea0936.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Random Forest (Data Asli): 0.8218
 </pre></div>
 </div>
@@ -1823,6 +1979,7 @@ Distribusi setelah balancing:
 </section>
 <section id="akurasi-data-dengan-smote">
 <h3>Akurasi Data dengan SMOTE<a class="headerlink" href="#akurasi-data-dengan-smote" title="Link to this heading">#</a></h3>
+<p>Kode ini menjalankan fungsi rf_with_cm pada data hasil oversampling dengan metode SMOTE. Hasil akurasi dari model Random Forest kemudian disimpan pada variabel acc_smote dan ditampilkan dengan 4 angka di belakang koma. Tujuannya adalah untuk melihat performa model setelah ketidakseimbangan data diperbaiki menggunakan SMOTE.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acc_smote</span> <span class="o">=</span> <span class="n">rf_with_cm</span><span class="p">(</span><span class="n">X_smote</span><span class="p">,</span> <span class="n">y_smote</span><span class="p">,</span> <span class="s2">&quot;SMOTE&quot;</span><span class="p">)</span>
@@ -1831,7 +1988,7 @@ Distribusi setelah balancing:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1d5f0afcaeb34a2b3192cb4ba7f44dabc94dd7b83fd995d9feff956820a41168.png" src="_images/1d5f0afcaeb34a2b3192cb4ba7f44dabc94dd7b83fd995d9feff956820a41168.png" />
+<img alt="_images/b2f9d57d2fce86964198e4d0031ca7cdb048971ec891ead53bb362ecbe0dc383.png" src="_images/b2f9d57d2fce86964198e4d0031ca7cdb048971ec891ead53bb362ecbe0dc383.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Random Forest (SMOTE): 0.9448
 </pre></div>
 </div>
@@ -1869,7 +2026,7 @@ Distribusi setelah balancing:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ASLI&quot;</span><span class="p">,</span> <span class="s2">&quot;SMOTE&quot;</span><span class="p">,</span> <span class="s2">&quot;ADASYN&quot;</span><span class="p">]</span>
 <span class="n">accuracies</span> <span class="o">=</span> <span class="p">[</span><span class="n">acc_original</span><span class="p">,</span> <span class="n">acc_smote</span><span class="p">,</span> <span class="n">acc_adasyn</span><span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span> <span class="s2">&quot;limegreen&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">]</span>  <span class="c1"># warna ADASYN lebih soft</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">]</span>  
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
@@ -1889,15 +2046,318 @@ Distribusi setelah balancing:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c9bb9af09eccba57eb422e2a11cbf9ddc53f7bfac41857917330b9e8a0901b9b.png" src="_images/c9bb9af09eccba57eb422e2a11cbf9ddc53f7bfac41857917330b9e8a0901b9b.png" />
+<img alt="_images/7a16139cf01df101bcbee98729f5eece4a7241fc251412963794548d16038fa0.png" src="_images/7a16139cf01df101bcbee98729f5eece4a7241fc251412963794548d16038fa0.png" />
 </div>
 </div>
+</section>
+</section>
+<section id="bagging-classifier">
+<h2>Bagging Classifier<a class="headerlink" href="#bagging-classifier" title="Link to this heading">#</a></h2>
+<p>Bagging atau Agregasi Bootstrap, bekerja dengan melatih beberapa model dasar secara independen dan paralel pada beberapa subset acak dari data pelatihan. Subset ini dibuat menggunakan  pengambilan sampel bootstrap , di mana titik data dipilih secara acak dengan penggantian, yang memungkinkan beberapa sampel muncul beberapa kali sementara yang lain mungkin dikecualikan.Dimulai dengan kumpulan data asli yang berisi beberapa titik data (diwakili oleh lingkaran berwarna). Kumpulan data asli diambil sampelnya secara acak dengan penggantian beberapa kali. Ini berarti bahwa dalam setiap sampel, satu titik data dapat dipilih lebih dari sekali atau tidak sama sekali. Sampel-sampel ini membentuk beberapa subset dari data asli.</p>
+<p><img alt="Grafik Minimum" src="_images/bagging.png" /></p>
+<section id="id3">
+<h3>Import LIbrary<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaggingClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classifier">
+<h3>Classifier<a class="headerlink" href="#classifier" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Split data asli</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_enc</span><span class="p">)</span>
+
+<span class="c1"># 2. Split data SMOTE</span>
+<span class="n">X_train_sm</span><span class="p">,</span> <span class="n">X_test_sm</span><span class="p">,</span> <span class="n">y_train_sm</span><span class="p">,</span> <span class="n">y_test_sm</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_smote</span><span class="p">,</span> <span class="n">y_smote</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_smote</span><span class="p">)</span>
+
+<span class="c1"># 3. Split data ADASYN</span>
+<span class="n">X_train_ad</span><span class="p">,</span> <span class="n">X_test_ad</span><span class="p">,</span> <span class="n">y_train_ad</span><span class="p">,</span> <span class="n">y_test_ad</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_adasyn</span><span class="p">)</span>
+
+<span class="c1"># Buat model Bagging</span>
+<span class="n">bagging</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bagging</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">bagging</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">acc_bagging_original</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Bagging (Data Asli): </span><span class="si">{</span><span class="n">acc_bagging_original</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s2">&quot;Data Asli&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">acc_bagging_original</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Akurasi Bagging (Data Asli)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">acc_bagging_original</span><span class="o">+</span><span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">acc_bagging_original</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix - Bagging (Data Asli)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_test_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test_pca</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_test_pca</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi PCA - Bagging (Data Asli)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PC1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PC2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted Class&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Bagging (Data Asli): 0.8235
+</pre></div>
+</div>
+<img alt="_images/3e001d4bbcc8cc3b51bb8a1706cf82f08836ff18b89c61609e9bbb11c5c22eff.png" src="_images/3e001d4bbcc8cc3b51bb8a1706cf82f08836ff18b89c61609e9bbb11c5c22eff.png" />
+<img alt="_images/4a343351bfcbe2fe49a81ab463b47fd311f457b1beb8325e1f01b9a2e6b9be31.png" src="_images/4a343351bfcbe2fe49a81ab463b47fd311f457b1beb8325e1f01b9a2e6b9be31.png" />
+<img alt="_images/bf286a12fae00c35cc0fadbe994f3e83070acc007e614f14c3f8934c964f15e0.png" src="_images/bf286a12fae00c35cc0fadbe994f3e83070acc007e614f14c3f8934c964f15e0.png" />
+</div>
+</div>
+</section>
+<section id="bagging-classifier-smote">
+<h3>Bagging Classifier SMOTE<a class="headerlink" href="#bagging-classifier-smote" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bagging</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_sm</span><span class="p">,</span> <span class="n">y_train_sm</span><span class="p">)</span>
+<span class="n">y_pred_sm</span> <span class="o">=</span> <span class="n">bagging</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_sm</span><span class="p">)</span>
+<span class="n">acc_bagging_smote</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_sm</span><span class="p">,</span> <span class="n">y_pred_sm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Bagging (SMOTE): </span><span class="si">{</span><span class="n">acc_bagging_smote</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s2">&quot;SMOTE&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">acc_bagging_smote</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Akurasi Bagging (SMOTE)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">acc_bagging_smote</span><span class="o">+</span><span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">acc_bagging_smote</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">cm_sm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_sm</span><span class="p">,</span> <span class="n">y_pred_sm</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm_sm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix - Bagging (SMOTE)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm_sm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm_sm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm_sm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_test_sm_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test_sm</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test_sm_pca</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_test_sm_pca</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_sm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi PCA - Bagging (SMOTE)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PC1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PC2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted Class&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Bagging (SMOTE): 0.9563
+</pre></div>
+</div>
+<img alt="_images/8de773e365624579724c411174a53d356eac5630763b74d802e41d8435a05d7a.png" src="_images/8de773e365624579724c411174a53d356eac5630763b74d802e41d8435a05d7a.png" />
+<img alt="_images/79b1e45af8d79ae26f561c1cfbb9350ffc13cd0c138cd9f4ead9e126ef5c3b65.png" src="_images/79b1e45af8d79ae26f561c1cfbb9350ffc13cd0c138cd9f4ead9e126ef5c3b65.png" />
+<img alt="_images/ad25162c22ea4261698efd3626ec162b474ffc68ab6bba0cd83097dcedb3eb9d.png" src="_images/ad25162c22ea4261698efd3626ec162b474ffc68ab6bba0cd83097dcedb3eb9d.png" />
+</div>
+</div>
+</section>
+<section id="bagging-classifier-adasyn">
+<h3>Bagging Classifier ADASYN<a class="headerlink" href="#bagging-classifier-adasyn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;X_scaled&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()</span> <span class="ow">or</span> <span class="s1">&#39;y_enc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s2">&quot;X_scaled atau y_enc tidak ditemukan. Jalankan preprocessing dulu.&quot;</span><span class="p">)</span>
+
+<span class="n">X_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+<span class="n">y_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_enc</span><span class="p">)</span>
+<span class="k">if</span> <span class="s1">&#39;le&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_proc</span><span class="p">)</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_proc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi awal:&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+
+<span class="n">min_count</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">min_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">rare_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab</span> <span class="k">for</span> <span class="n">lab</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">rare_labels</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_proc</span> <span class="o">==</span> <span class="n">lab</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">X_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X_proc</span><span class="p">,</span> <span class="n">X_proc</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">y_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_proc</span><span class="p">,</span> <span class="p">[</span><span class="n">y_proc</span><span class="p">[</span><span class="n">idx</span><span class="p">]]])</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_proc</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi setelah duplikasi:&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n_neighbors untuk ADASYN:&quot;</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">)</span>
+
+<span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_proc</span><span class="p">,</span> <span class="n">y_proc</span><span class="p">)</span>
+    <span class="n">adasyn_success</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi setelah ADASYN:&quot;</span><span class="p">,</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_adasyn</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADASYN gagal: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span> <span class="o">=</span> <span class="n">X_proc</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">y_proc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">adasyn_success</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">X_train_ad</span><span class="p">,</span> <span class="n">X_test_ad</span><span class="p">,</span> <span class="n">y_train_ad</span><span class="p">,</span> <span class="n">y_test_ad</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_adasyn</span>
+<span class="p">)</span>
+
+<span class="n">bagging</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">bagging</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_ad</span><span class="p">,</span> <span class="n">y_train_ad</span><span class="p">)</span>
+<span class="n">y_pred_ad</span> <span class="o">=</span> <span class="n">bagging</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_ad</span><span class="p">)</span>
+<span class="n">acc_bagging_adasyn</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_ad</span><span class="p">,</span> <span class="n">y_pred_ad</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Bagging (ADASYN): </span><span class="si">{</span><span class="n">acc_bagging_adasyn</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="s2">&quot;ADASYN gagal, akurasi tidak tersedia.&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s2">&quot;Bagging (ADASYN)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">acc_bagging_adasyn</span><span class="p">]</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightpink&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Akurasi Bagging (ADASYN)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">acc_bagging_adasyn</span><span class="o">+</span><span class="mf">0.01</span><span class="p">)</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="mf">0.01</span><span class="p">,</span> 
+         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">acc_bagging_adasyn</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="s2">&quot;Gagal&quot;</span><span class="p">,</span> 
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">cm_ad</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_ad</span><span class="p">,</span> <span class="n">y_pred_ad</span><span class="p">)</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm_ad</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix - Bagging (ADASYN)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm_ad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm_ad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">cm_ad</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_test_ad_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test_ad</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test_ad_pca</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_test_ad_pca</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> 
+                      <span class="n">c</span><span class="o">=</span><span class="n">y_pred_ad</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y_test_ad</span><span class="p">),</span> 
+                      <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi PCA - Bagging (ADASYN)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PC1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PC2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted Class&quot;</span> <span class="k">if</span> <span class="n">adasyn_success</span> <span class="k">else</span> <span class="s2">&quot;Gagal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi awal: Counter({np.int64(0): 143, np.int64(1): 77, np.int64(7): 52, np.int64(4): 35, np.int64(5): 20, np.int64(6): 5, np.int64(3): 2, np.int64(2): 2})
+n_neighbors untuk ADASYN: 1
+ADASYN gagal: Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\triad\AppData\Local\Programs\Python\Python39\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADASYN gagal, akurasi tidak tersedia.
+</pre></div>
+</div>
+<img alt="_images/6fd1d2f1469a5cafcc9beffc7e0141b0a120fbc13f4e4386b53db6b6f76fc106.png" src="_images/6fd1d2f1469a5cafcc9beffc7e0141b0a120fbc13f4e4386b53db6b6f76fc106.png" />
+<img alt="_images/9a0253b02e6d422229b7d9b94915cad2c3b5a3cef3b1462ffc59da25b8cf99e8.png" src="_images/9a0253b02e6d422229b7d9b94915cad2c3b5a3cef3b1462ffc59da25b8cf99e8.png" />
+<img alt="_images/b17d192bef1f9cf1a638d4d2a7eb0547fe49a2631e58c5ec6155b47857d9cb57.png" src="_images/b17d192bef1f9cf1a638d4d2a7eb0547fe49a2631e58c5ec6155b47857d9cb57.png" />
+</div>
+</div>
+</section>
+<section id="perbandingan-bagging-classifier-dari-data-asli-smote-dan-adasyn">
+<h3>Perbandingan Bagging Classifier dari Data Asli, SMOTE, dan ADASYN<a class="headerlink" href="#perbandingan-bagging-classifier-dari-data-asli-smote-dan-adasyn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Data Asli&quot;</span><span class="p">,</span> <span class="s2">&quot;SMOTE&quot;</span><span class="p">,</span> <span class="s2">&quot;ADASYN&quot;</span><span class="p">]</span>
+<span class="n">accuracies</span> <span class="o">=</span> <span class="p">[</span><span class="n">acc_bagging_original</span><span class="p">,</span> <span class="n">acc_bagging_smote</span><span class="p">,</span> <span class="n">acc_bagging_adasyn</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;skyblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bar</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bars</span><span class="p">):</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">methods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ADASYN&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">adasyn_success</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">&quot;Gagal&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Perbandingan Akurasi Bagging Classifier&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/99f54e53e8b9d36fbf9dbe76e43fbd17cfac3e7dd6c96ac462e1c95508f50e2e.png" src="_images/99f54e53e8b9d36fbf9dbe76e43fbd17cfac3e7dd6c96ac462e1c95508f50e2e.png" />
+</div>
+</div>
+</section>
+<section id="kesimpulan-hasil-bagging-classifier">
+<h3>Kesimpulan Hasil Bagging Classifier<a class="headerlink" href="#kesimpulan-hasil-bagging-classifier" title="Link to this heading">#</a></h3>
+<p>Hasil akurasi Data asli dengan Bagging Classifier itu sebesar 0.82, SMOTE sebesar 0.96, sedangkan ADASYN tetap gagal. Namun di grafik perbandingan tampilan akurasi ada sedikit perubahan, dimana data asli menjadi 0.84 dan SMOTE menjadi 0.95. Perbedaan ini terjadi karena Bagging menggunakan pengambilan sampel secara acak (bootstrap), jadi setiap kali data dibagi menjadi train dan test, hasilnya bisa sedikit berbeda. Selain itu, SMOTE dan ADASYN menambah sampel minoritas, sehingga urutan data dan jumlah sampel bisa memengaruhi hasil prediksi. Perbedaan 1–2% antara akurasi individual dan grafik itu wajar. Intinya, walaupun metode balancing menambah jumlah data minoritas, hasil Bagging sedikit berubah karena sifatnya yang acak dan bergantung pada bagaimana data dibagi. Jadi perbedaan kecil ini normal dan tidak berarti ada kesalahan.</p>
 </section>
 </section>
 <section id="referensi">
 <h2>Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://p3mpi.uma.ac.id/2024/03/08/memahami-teknik-oversampling-minoritas-sintetik-smote/">https://p3mpi.uma.ac.id/2024/03/08/memahami-teknik-oversampling-minoritas-sintetik-smote/</a>
-<a class="reference external" href="https://www.activeloop.ai/resources/glossary/adaptive-synthetic-sampling-adasyn/">https://www.activeloop.ai/resources/glossary/adaptive-synthetic-sampling-adasyn/</a></p>
+<a class="reference external" href="https://www.activeloop.ai/resources/glossary/adaptive-synthetic-sampling-adasyn/">https://www.activeloop.ai/resources/glossary/adaptive-synthetic-sampling-adasyn/</a>
+<a class="reference external" href="https://www.revou.co/id/kosakata/random-forest">https://www.revou.co/id/kosakata/random-forest</a>
+<a class="reference external" href="https://www.ibm.com/think/topics/naive-bayes">https://www.ibm.com/think/topics/naive-bayes</a></p>
 </section>
 </section>
 
@@ -1971,6 +2431,8 @@ Distribusi setelah balancing:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smote">SMOTE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-perbandingan-sebelum-data-sesudah-penyeimbangan-data-dengan-smote">Tampilan Perbandingan Sebelum data Sesudah Penyeimbangan Data dengan Smote</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adasyn">ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeimbangan-data-menggunakan-adasyn-dengan-iterasi">Penyeimbangan Data Menggunakan ADASYN dengan Iterasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-perbandingan-sebelum-dan-sesudah-penyeimbangan-dengan-datasyn">Tampilan Perbandingan Sebelum dan Sesudah Penyeimbangan dengan DATASYN</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-naive-bayes">Klasifikasi dengan Naive Bayes</a><ul class="nav section-nav flex-column">
@@ -1984,8 +2446,19 @@ Distribusi setelah balancing:
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-random-forest">Klasifikasi dengan Random Forest</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-random-forest-dengan-confusion-matrix">Implementasi Random Forest dengan Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-data-asli">Akurasi Data Asli</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-data-dengan-smote">Akurasi Data dengan SMOTE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafik-perbandingan-akurasi-ketiganya">Grafik Perbandingan Akurasi Ketiganya</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier">Bagging Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Import LIbrary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifier">Classifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier-smote">Bagging Classifier SMOTE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier-adasyn">Bagging Classifier ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-bagging-classifier-dari-data-asli-smote-dan-adasyn">Perbandingan Bagging Classifier dari Data Asli, SMOTE, dan ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-bagging-classifier">Kesimpulan Hasil Bagging Classifier</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">Referensi</a></li>

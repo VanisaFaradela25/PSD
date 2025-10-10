@@ -178,7 +178,11 @@ const Search = {
 
   htmlToText: (htmlString, anchor) => {
     const htmlElement = new DOMParser().parseFromString(htmlString, 'text/html');
+<<<<<<< HEAD
+    for (const removalQuery of [".headerlink", "script", "style"]) {
+=======
     for (const removalQuery of [".headerlinks", "script", "style"]) {
+>>>>>>> f44904a (Tambah)
       htmlElement.querySelectorAll(removalQuery).forEach((el) => { el.remove() });
     }
     if (anchor) {
@@ -328,13 +332,22 @@ const Search = {
     for (const [title, foundTitles] of Object.entries(allTitles)) {
       if (title.toLowerCase().trim().includes(queryLower) && (queryLower.length >= title.length/2)) {
         for (const [file, id] of foundTitles) {
+<<<<<<< HEAD
+          const score = Math.round(Scorer.title * queryLower.length / title.length);
+          const boost = titles[file] === title ? 1 : 0;  // add a boost for document titles
+=======
           let score = Math.round(100 * queryLower.length / title.length)
+>>>>>>> f44904a (Tambah)
           normalResults.push([
             docNames[file],
             titles[file] !== title ? `${titles[file]} > ${title}` : title,
             id !== null ? "#" + id : "",
             null,
+<<<<<<< HEAD
+            score + boost,
+=======
             score,
+>>>>>>> f44904a (Tambah)
             filenames[file],
           ]);
         }

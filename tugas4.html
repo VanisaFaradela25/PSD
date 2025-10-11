@@ -187,10 +187,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas5.html">DATA PREPROCESSING</a></li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l1"><a class="reference internal" href="tugas6.html">PENYEIMBANGAN DATA MENGGUNAKAN SMOTE DAN ADASYN</a></li>
->>>>>>> f44904a (Tambah)
+<li class="toctree-l1"><a class="reference internal" href="tugas6.html">Menginstall Library</a></li>
+
 </ul>
 
     </div>
@@ -448,267 +446,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (150, 5)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Baca dataset CSV</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-      <th>species</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.7</td>
-      <td>3.2</td>
-      <td>1.3</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 150 entries, 0 to 149
-Data columns (total 5 columns):
- #   Column        Non-Null Count  Dtype  
----  ------        --------------  -----  
- 0   sepal_length  150 non-null    float64
- 1   sepal_width   150 non-null    float64
- 2   petal_length  150 non-null    float64
- 3   petal_width   150 non-null    float64
- 4   species       150 non-null    object 
-dtypes: float64(4), object(1)
-memory usage: 6.0+ KB
-</pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>150.000000</td>
-      <td>150.000000</td>
-      <td>150.000000</td>
-      <td>150.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>5.843333</td>
-      <td>3.054000</td>
-      <td>3.758667</td>
-      <td>1.198667</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.828066</td>
-      <td>0.433594</td>
-      <td>1.764420</td>
-      <td>0.763161</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>4.300000</td>
-      <td>2.000000</td>
-      <td>1.000000</td>
-      <td>0.100000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>5.100000</td>
-      <td>2.800000</td>
-      <td>1.600000</td>
-      <td>0.300000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>5.800000</td>
-      <td>3.000000</td>
-      <td>4.350000</td>
-      <td>1.300000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>6.400000</td>
-      <td>3.300000</td>
-      <td>5.100000</td>
-      <td>1.800000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>7.900000</td>
-      <td>4.400000</td>
-      <td>6.900000</td>
-      <td>2.500000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-      <th>species</th>
-      <th>sepal_length_outlier</th>
-      <th>sepal_width_outlier</th>
-      <th>petal_length_outlier</th>
-      <th>petal_width_outlier</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.7</td>
-      <td>3.2</td>
-      <td>1.3</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Penjelasan singkat kode di atas:</p>
 <ul class="simple">
@@ -739,8 +487,8 @@ display(df.head()) menampilkan dataset dengan tambahan kolom outlier, sehingga m
 </div>
 </div>
 <div class="cell_output docutils container">
-<<<<<<< HEAD
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: seaborn in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (0.13.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting seaborn
+  Downloading seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
 Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (1.26.4)
 Requirement already satisfied: pandas&gt;=1.2 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (2.1.4)
 Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (3.7.5)
@@ -755,6 +503,9 @@ Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\dell\appdata\
 Requirement already satisfied: pytz&gt;=2020.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
 Requirement already satisfied: tzdata&gt;=2022.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
 Requirement already satisfied: six&gt;=1.5 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.17.0)
+Downloading seaborn-0.13.2-py3-none-any.whl (294 kB)
+Installing collected packages: seaborn
+Successfully installed seaborn-0.13.2
 Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
@@ -762,30 +513,6 @@ Note: you may need to restart the kernel to use updated packages.
 [notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
-=======
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting seaborn
-  Using cached seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
-Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from seaborn) (2.3.3)
-Requirement already satisfied: pandas&gt;=1.2 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from seaborn) (2.3.3)
-Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from seaborn) (3.10.6)
-Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.3.3)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (0.12.1)
-Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.60.1)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.4.9)
-Requirement already satisfied: packaging&gt;=20.0 in c:\users\vanisa\appdata\roaming\python\python313\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (25.0)
-Requirement already satisfied: pillow&gt;=8 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (11.3.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (3.2.5)
-Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\vanisa\appdata\roaming\python\python313\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.2)
-Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.2)
-Requirement already satisfied: six&gt;=1.5 in c:\users\vanisa\appdata\roaming\python\python313\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.17.0)
-Using cached seaborn-0.13.2-py3-none-any.whl (294 kB)
-Installing collected packages: seaborn
-Successfully installed seaborn-0.13.2
-Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
->>>>>>> f44904a (Tambah)
 </div>
 </div>
 <div class="cell docutils container">
@@ -802,17 +529,10 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<<<<<<< HEAD
 <img alt="_images/d98823c7c1fa57a887f2fa9793bf35ccc79d59d4433dabf25f93bd26cc653597.png" src="_images/d98823c7c1fa57a887f2fa9793bf35ccc79d59d4433dabf25f93bd26cc653597.png" />
 <img alt="_images/604269d7e49c7a56b2f6022c168c8a34515eb03c3ec6c27ffbd84be166ddd6b5.png" src="_images/604269d7e49c7a56b2f6022c168c8a34515eb03c3ec6c27ffbd84be166ddd6b5.png" />
 <img alt="_images/08e53f84340ac5721226e8c145a7f4006c7cb54eb88e80139d0e2b840b77bc2f.png" src="_images/08e53f84340ac5721226e8c145a7f4006c7cb54eb88e80139d0e2b840b77bc2f.png" />
 <img alt="_images/2fd4af025b64995d816c651d3d37b9b418a80eacee4ae3406780093d8e7353cf.png" src="_images/2fd4af025b64995d816c651d3d37b9b418a80eacee4ae3406780093d8e7353cf.png" />
-=======
-<img alt="_images/057cdad022c919cbbebae2cfae47da1c9d81cea98359f86ff6452393cc7821b5.png" src="_images/057cdad022c919cbbebae2cfae47da1c9d81cea98359f86ff6452393cc7821b5.png" />
-<img alt="_images/1cfd9a795cbb39ceb84b2649ca605fd25ec92a50523f4c7849e819a3b4852e13.png" src="_images/1cfd9a795cbb39ceb84b2649ca605fd25ec92a50523f4c7849e819a3b4852e13.png" />
-<img alt="_images/80acf0fe63a83fbba4e7e9696a9b495faa31c57b2d6ad55323e8cef15163b8ee.png" src="_images/80acf0fe63a83fbba4e7e9696a9b495faa31c57b2d6ad55323e8cef15163b8ee.png" />
-<img alt="_images/16a6c4451393e9bf2f67addeace9d48f27f3b625fc1f211c7473d3149f227778.png" src="_images/16a6c4451393e9bf2f67addeace9d48f27f3b625fc1f211c7473d3149f227778.png" />
->>>>>>> f44904a (Tambah)
 </div>
 </div>
 <p>Boxplot akan menampilkan median, kuartil, dan outlier secara visual. Outlier yang terdeteksi dengan IQR akan muncul sebagai titik di luar “kotak”.</p>
@@ -831,17 +551,10 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<<<<<<< HEAD
 <img alt="_images/34a46b86ffea217564eb238a428b7fe7cb7546d8274942df6bb9f09ccc267be8.png" src="_images/34a46b86ffea217564eb238a428b7fe7cb7546d8274942df6bb9f09ccc267be8.png" />
 <img alt="_images/5a1ce957798af96458a934a21fc247d09e3614acb38d82d87e5880a0eaf26e15.png" src="_images/5a1ce957798af96458a934a21fc247d09e3614acb38d82d87e5880a0eaf26e15.png" />
 <img alt="_images/4ad6dcdb4754b8403a11b67625e5fa54db26d7f0ed3980810de0b115452841c7.png" src="_images/4ad6dcdb4754b8403a11b67625e5fa54db26d7f0ed3980810de0b115452841c7.png" />
 <img alt="_images/b2d5b44b7266fc97d55d4b989edc4f57e48a6beb66c6ff13bc34b37a1c44a7a7.png" src="_images/b2d5b44b7266fc97d55d4b989edc4f57e48a6beb66c6ff13bc34b37a1c44a7a7.png" />
-=======
-<img alt="_images/dc31664d9b10e872db0b0d6d6eb75504f472b4b34f2206b363f80bc68f3f2311.png" src="_images/dc31664d9b10e872db0b0d6d6eb75504f472b4b34f2206b363f80bc68f3f2311.png" />
-<img alt="_images/ac39bdf03149b189e633302894aea62eb6ddea4f8b863a6817adb8a9b2372c6c.png" src="_images/ac39bdf03149b189e633302894aea62eb6ddea4f8b863a6817adb8a9b2372c6c.png" />
-<img alt="_images/c6c77513bb7a0bd2f2efa6f12f2e34bbfbe253964746d3fb345d392f77b9c402.png" src="_images/c6c77513bb7a0bd2f2efa6f12f2e34bbfbe253964746d3fb345d392f77b9c402.png" />
-<img alt="_images/d6812558742a1a9d39d26cc4cda591bf06685bbd1d16466001591c44e0af099e.png" src="_images/d6812558742a1a9d39d26cc4cda591bf06685bbd1d16466001591c44e0af099e.png" />
->>>>>>> f44904a (Tambah)
 </div>
 </div>
 </section>
@@ -877,11 +590,7 @@ petal_width: 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<<<<<<< HEAD
 <img alt="_images/dfa815879033ed8a495c87eb8e27961275c62314d5e24d82304ce4ebacf54592.png" src="_images/dfa815879033ed8a495c87eb8e27961275c62314d5e24d82304ce4ebacf54592.png" />
-=======
-<img alt="_images/e26e344e21b6bb623c94ac8b6e685ef6ef85897fb5a74d87264479b87f9c8edc.png" src="_images/e26e344e21b6bb623c94ac8b6e685ef6ef85897fb5a74d87264479b87f9c8edc.png" />
->>>>>>> f44904a (Tambah)
 </div>
 </div>
 </section>
@@ -897,11 +606,7 @@ petal_width: 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<<<<<<< HEAD
 <img alt="_images/51c3b68f7082a17e5d41f28330e38d2571d174c8de0e565ed3653834e97e6c37.png" src="_images/51c3b68f7082a17e5d41f28330e38d2571d174c8de0e565ed3653834e97e6c37.png" />
-=======
-<img alt="_images/1fa26e74eb907b68d16fa258ced0ab2f7a084d75865b68584104906412674625.png" src="_images/1fa26e74eb907b68d16fa258ced0ab2f7a084d75865b68584104906412674625.png" />
->>>>>>> f44904a (Tambah)
 </div>
 </div>
 </section>

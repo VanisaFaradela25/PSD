@@ -179,10 +179,10 @@ const Search = {
   htmlToText: (htmlString, anchor) => {
     const htmlElement = new DOMParser().parseFromString(htmlString, 'text/html');
 <<<<<<< HEAD
-    for (const removalQuery of [".headerlink", "script", "style"]) {
-=======
     for (const removalQuery of [".headerlinks", "script", "style"]) {
->>>>>>> f44904a (Tambah)
+=======
+    for (const removalQuery of [".headerlink", "script", "style"]) {
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
       htmlElement.querySelectorAll(removalQuery).forEach((el) => { el.remove() });
     }
     if (anchor) {
@@ -333,21 +333,21 @@ const Search = {
       if (title.toLowerCase().trim().includes(queryLower) && (queryLower.length >= title.length/2)) {
         for (const [file, id] of foundTitles) {
 <<<<<<< HEAD
+          let score = Math.round(100 * queryLower.length / title.length)
+=======
           const score = Math.round(Scorer.title * queryLower.length / title.length);
           const boost = titles[file] === title ? 1 : 0;  // add a boost for document titles
-=======
-          let score = Math.round(100 * queryLower.length / title.length)
->>>>>>> f44904a (Tambah)
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
           normalResults.push([
             docNames[file],
             titles[file] !== title ? `${titles[file]} > ${title}` : title,
             id !== null ? "#" + id : "",
             null,
 <<<<<<< HEAD
-            score + boost,
-=======
             score,
->>>>>>> f44904a (Tambah)
+=======
+            score + boost,
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
             filenames[file],
           ]);
         }

@@ -32,7 +32,11 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+<<<<<<< HEAD
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+=======
     <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -188,9 +192,16 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas5.html">DATA PREPROCESSING</a></li>
 <<<<<<< HEAD
+<li class="toctree-l1"><a class="reference internal" href="tugas7.html">KLASIFIKASI DATA MENGGUNAKAN KNIME - PROJECT PRA UTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas8.html">KLASIFIKASI DATASET TIROID MENGGUNAKAN KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas9.html">PROSES ANALISIS DAN PREDIKSI NO2 SELAMA 2 BULAN DI DESA MOJOREMBUN, KABUPATEN BLORA, JAWA TENGAH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas10.html">IDENTIFIKASI SUARA ‘BUKA TUTUP’ MENGGUNAKAN FEATURE STATISTIK TIME SERIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas11.html">PERHITUNGAN JARAK 100 DATA SUARA BUKA/TUTUP DAN 1 DATA SUARA BARU MENGGUNAKAN DATA TIME WARPING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas12.html">KLASIFIKASI HEARTBEAT SIGNAL</a></li>
 =======
-<li class="toctree-l1"><a class="reference internal" href="tugas6.html">PENYEIMBANGAN DATA MENGGUNAKAN SMOTE DAN ADASYN</a></li>
->>>>>>> f44904a (Tambah)
+<li class="toctree-l1"><a class="reference internal" href="tugas6.html">Menginstall Library</a></li>
+
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
 </ul>
 
     </div>
@@ -448,6 +459,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<<<<<<< HEAD
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (150, 5)
 </pre></div>
 </div>
@@ -709,6 +721,19 @@ memory usage: 6.0+ KB
   </tbody>
 </table>
 </div></div></div>
+=======
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Baca dataset CSV</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
 </div>
 <p>Penjelasan singkat kode di atas:</p>
 <ul class="simple">
@@ -740,31 +765,7 @@ display(df.head()) menampilkan dataset dengan tambahan kolom outlier, sehingga m
 </div>
 <div class="cell_output docutils container">
 <<<<<<< HEAD
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: seaborn in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (0.13.2)
-Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (1.26.4)
-Requirement already satisfied: pandas&gt;=1.2 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (2.1.4)
-Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (3.7.5)
-Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.3.1)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (0.12.1)
-Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.56.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.4.8)
-Requirement already satisfied: packaging&gt;=20.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (24.2)
-Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (11.1.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (3.2.1)
-Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
-Requirement already satisfied: tzdata&gt;=2022.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
-Requirement already satisfied: six&gt;=1.5 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.17.0)
-Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.0.1 -&gt; 25.2
-[notice] To update, run: python.exe -m pip install --upgrade pip
-</pre></div>
-</div>
-=======
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting seaborn
-  Using cached seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: seaborn in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (0.13.2)
 Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from seaborn) (2.3.3)
 Requirement already satisfied: pandas&gt;=1.2 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from seaborn) (2.3.3)
 Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from seaborn) (3.10.6)
@@ -779,13 +780,38 @@ Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\vanisa\appdat
 Requirement already satisfied: pytz&gt;=2020.1 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.2)
 Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\vanisa\appdata\local\programs\python\python313\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.2)
 Requirement already satisfied: six&gt;=1.5 in c:\users\vanisa\appdata\roaming\python\python313\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.17.0)
-Using cached seaborn-0.13.2-py3-none-any.whl (294 kB)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.2 -&gt; 25.3
+=======
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting seaborn
+  Downloading seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
+Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (1.26.4)
+Requirement already satisfied: pandas&gt;=1.2 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (2.1.4)
+Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from seaborn) (3.7.5)
+Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.56.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.4.8)
+Requirement already satisfied: packaging&gt;=20.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (24.2)
+Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (11.1.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (3.2.1)
+Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.1 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\dell\appdata\local\programs\python\python311\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.17.0)
+Downloading seaborn-0.13.2-py3-none-any.whl (294 kB)
 Installing collected packages: seaborn
 Successfully installed seaborn-0.13.2
 Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
->>>>>>> f44904a (Tambah)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.0.1 -&gt; 25.2
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -803,16 +829,16 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell_output docutils container">
 <<<<<<< HEAD
-<img alt="_images/d98823c7c1fa57a887f2fa9793bf35ccc79d59d4433dabf25f93bd26cc653597.png" src="_images/d98823c7c1fa57a887f2fa9793bf35ccc79d59d4433dabf25f93bd26cc653597.png" />
-<img alt="_images/604269d7e49c7a56b2f6022c168c8a34515eb03c3ec6c27ffbd84be166ddd6b5.png" src="_images/604269d7e49c7a56b2f6022c168c8a34515eb03c3ec6c27ffbd84be166ddd6b5.png" />
-<img alt="_images/08e53f84340ac5721226e8c145a7f4006c7cb54eb88e80139d0e2b840b77bc2f.png" src="_images/08e53f84340ac5721226e8c145a7f4006c7cb54eb88e80139d0e2b840b77bc2f.png" />
-<img alt="_images/2fd4af025b64995d816c651d3d37b9b418a80eacee4ae3406780093d8e7353cf.png" src="_images/2fd4af025b64995d816c651d3d37b9b418a80eacee4ae3406780093d8e7353cf.png" />
-=======
 <img alt="_images/057cdad022c919cbbebae2cfae47da1c9d81cea98359f86ff6452393cc7821b5.png" src="_images/057cdad022c919cbbebae2cfae47da1c9d81cea98359f86ff6452393cc7821b5.png" />
 <img alt="_images/1cfd9a795cbb39ceb84b2649ca605fd25ec92a50523f4c7849e819a3b4852e13.png" src="_images/1cfd9a795cbb39ceb84b2649ca605fd25ec92a50523f4c7849e819a3b4852e13.png" />
 <img alt="_images/80acf0fe63a83fbba4e7e9696a9b495faa31c57b2d6ad55323e8cef15163b8ee.png" src="_images/80acf0fe63a83fbba4e7e9696a9b495faa31c57b2d6ad55323e8cef15163b8ee.png" />
 <img alt="_images/16a6c4451393e9bf2f67addeace9d48f27f3b625fc1f211c7473d3149f227778.png" src="_images/16a6c4451393e9bf2f67addeace9d48f27f3b625fc1f211c7473d3149f227778.png" />
->>>>>>> f44904a (Tambah)
+=======
+<img alt="_images/d98823c7c1fa57a887f2fa9793bf35ccc79d59d4433dabf25f93bd26cc653597.png" src="_images/d98823c7c1fa57a887f2fa9793bf35ccc79d59d4433dabf25f93bd26cc653597.png" />
+<img alt="_images/604269d7e49c7a56b2f6022c168c8a34515eb03c3ec6c27ffbd84be166ddd6b5.png" src="_images/604269d7e49c7a56b2f6022c168c8a34515eb03c3ec6c27ffbd84be166ddd6b5.png" />
+<img alt="_images/08e53f84340ac5721226e8c145a7f4006c7cb54eb88e80139d0e2b840b77bc2f.png" src="_images/08e53f84340ac5721226e8c145a7f4006c7cb54eb88e80139d0e2b840b77bc2f.png" />
+<img alt="_images/2fd4af025b64995d816c651d3d37b9b418a80eacee4ae3406780093d8e7353cf.png" src="_images/2fd4af025b64995d816c651d3d37b9b418a80eacee4ae3406780093d8e7353cf.png" />
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
 </div>
 </div>
 <p>Boxplot akan menampilkan median, kuartil, dan outlier secara visual. Outlier yang terdeteksi dengan IQR akan muncul sebagai titik di luar “kotak”.</p>
@@ -832,16 +858,16 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell_output docutils container">
 <<<<<<< HEAD
-<img alt="_images/34a46b86ffea217564eb238a428b7fe7cb7546d8274942df6bb9f09ccc267be8.png" src="_images/34a46b86ffea217564eb238a428b7fe7cb7546d8274942df6bb9f09ccc267be8.png" />
-<img alt="_images/5a1ce957798af96458a934a21fc247d09e3614acb38d82d87e5880a0eaf26e15.png" src="_images/5a1ce957798af96458a934a21fc247d09e3614acb38d82d87e5880a0eaf26e15.png" />
-<img alt="_images/4ad6dcdb4754b8403a11b67625e5fa54db26d7f0ed3980810de0b115452841c7.png" src="_images/4ad6dcdb4754b8403a11b67625e5fa54db26d7f0ed3980810de0b115452841c7.png" />
-<img alt="_images/b2d5b44b7266fc97d55d4b989edc4f57e48a6beb66c6ff13bc34b37a1c44a7a7.png" src="_images/b2d5b44b7266fc97d55d4b989edc4f57e48a6beb66c6ff13bc34b37a1c44a7a7.png" />
-=======
 <img alt="_images/dc31664d9b10e872db0b0d6d6eb75504f472b4b34f2206b363f80bc68f3f2311.png" src="_images/dc31664d9b10e872db0b0d6d6eb75504f472b4b34f2206b363f80bc68f3f2311.png" />
 <img alt="_images/ac39bdf03149b189e633302894aea62eb6ddea4f8b863a6817adb8a9b2372c6c.png" src="_images/ac39bdf03149b189e633302894aea62eb6ddea4f8b863a6817adb8a9b2372c6c.png" />
 <img alt="_images/c6c77513bb7a0bd2f2efa6f12f2e34bbfbe253964746d3fb345d392f77b9c402.png" src="_images/c6c77513bb7a0bd2f2efa6f12f2e34bbfbe253964746d3fb345d392f77b9c402.png" />
 <img alt="_images/d6812558742a1a9d39d26cc4cda591bf06685bbd1d16466001591c44e0af099e.png" src="_images/d6812558742a1a9d39d26cc4cda591bf06685bbd1d16466001591c44e0af099e.png" />
->>>>>>> f44904a (Tambah)
+=======
+<img alt="_images/34a46b86ffea217564eb238a428b7fe7cb7546d8274942df6bb9f09ccc267be8.png" src="_images/34a46b86ffea217564eb238a428b7fe7cb7546d8274942df6bb9f09ccc267be8.png" />
+<img alt="_images/5a1ce957798af96458a934a21fc247d09e3614acb38d82d87e5880a0eaf26e15.png" src="_images/5a1ce957798af96458a934a21fc247d09e3614acb38d82d87e5880a0eaf26e15.png" />
+<img alt="_images/4ad6dcdb4754b8403a11b67625e5fa54db26d7f0ed3980810de0b115452841c7.png" src="_images/4ad6dcdb4754b8403a11b67625e5fa54db26d7f0ed3980810de0b115452841c7.png" />
+<img alt="_images/b2d5b44b7266fc97d55d4b989edc4f57e48a6beb66c6ff13bc34b37a1c44a7a7.png" src="_images/b2d5b44b7266fc97d55d4b989edc4f57e48a6beb66c6ff13bc34b37a1c44a7a7.png" />
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
 </div>
 </div>
 </section>
@@ -878,10 +904,10 @@ petal_width: 0
 </div>
 <div class="cell_output docutils container">
 <<<<<<< HEAD
-<img alt="_images/dfa815879033ed8a495c87eb8e27961275c62314d5e24d82304ce4ebacf54592.png" src="_images/dfa815879033ed8a495c87eb8e27961275c62314d5e24d82304ce4ebacf54592.png" />
-=======
 <img alt="_images/e26e344e21b6bb623c94ac8b6e685ef6ef85897fb5a74d87264479b87f9c8edc.png" src="_images/e26e344e21b6bb623c94ac8b6e685ef6ef85897fb5a74d87264479b87f9c8edc.png" />
->>>>>>> f44904a (Tambah)
+=======
+<img alt="_images/dfa815879033ed8a495c87eb8e27961275c62314d5e24d82304ce4ebacf54592.png" src="_images/dfa815879033ed8a495c87eb8e27961275c62314d5e24d82304ce4ebacf54592.png" />
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
 </div>
 </div>
 </section>
@@ -898,10 +924,10 @@ petal_width: 0
 </div>
 <div class="cell_output docutils container">
 <<<<<<< HEAD
-<img alt="_images/51c3b68f7082a17e5d41f28330e38d2571d174c8de0e565ed3653834e97e6c37.png" src="_images/51c3b68f7082a17e5d41f28330e38d2571d174c8de0e565ed3653834e97e6c37.png" />
-=======
 <img alt="_images/1fa26e74eb907b68d16fa258ced0ab2f7a084d75865b68584104906412674625.png" src="_images/1fa26e74eb907b68d16fa258ced0ab2f7a084d75865b68584104906412674625.png" />
->>>>>>> f44904a (Tambah)
+=======
+<img alt="_images/51c3b68f7082a17e5d41f28330e38d2571d174c8de0e565ed3653834e97e6c37.png" src="_images/51c3b68f7082a17e5d41f28330e38d2571d174c8de0e565ed3653834e97e6c37.png" />
+>>>>>>> ff8a6e6c9ed19be74b1219edc5b7aab7dcd29881
 </div>
 </div>
 </section>
